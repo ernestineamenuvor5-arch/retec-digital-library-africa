@@ -3,23 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <title>RETEC Digital Library - Career Games & Free Resources for JHS Students Ghana</title>
-    <meta name="description" content="Play career exploration games, earn badges, and download free workbooks for JHS students in Ghana. Gamified learning for Medical, Engineering, Technology careers and more.">
-    <meta name="keywords" content="career games Ghana, JHS career quiz, free workbooks Ghana, educational games, career exploration Ghana">
-    <meta name="author" content="RETEC Digital Library">
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="RETEC Digital Library - Career Games & Free Resources">
-    <meta property="og:description" content="Play career games and download free resources for JHS students in Ghana. Earn badges and explore 12 career paths.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://retec-digital-library.netlify.app">
-    
-  <link rel="stylesheet" href="styles.css">  <link rel="stylesheet" href="styles.css">
+    <title>RETEC Digital Library</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #2563eb; --primary-dark: #1e40af; --primary-light: #60a5fa;
+            --secondary: #10b981; --secondary-dark: #059669;
+            --accent: #f59e0b; --accent-light: #fbbf24;
+            --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
+            --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6; color: var(--gray-800); background: var(--gray-50);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white; padding: 4rem 0; text-align: center; position: relative; overflow: hidden;
+        }
+
+        header::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 80px);
+            opacity: 0.3;
+        }
+
+        .header-content { position: relative; z-index: 1; }
+
+        .logo {
+            font-size: 3rem; font-weight: 800; letter-spacing: -0.05em;
+            margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .tagline {
+            font-size: 1.5rem; font-weight: 300; margin-bottom: 1.5rem;
+            opacity: 0.95; animation: fadeInDown 0.8s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.125rem; max-width: 700px; margin: 0 auto 2rem;
+            line-height: 1.8; animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex; gap: 1.5rem; justify-content: center;
+            flex-wrap: wrap; animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            display: inline-block; padding: 0.875rem 2rem; border-radius: 1rem;
+            font-weight: 600; text-decoration: none; transition: all 0.3s;
+            cursor: pointer; border: none; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary { background: white; color: var(--primary); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+        .btn-secondary { background: var(--secondary); color: white; }
+        .btn-secondary:hover { background: var(--secondary-dark); transform: translateY(-2px); }
+        .btn-download { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); color: white; width: 100%; }
+
+        .features { padding: 4rem 0; background: white; }
+
+        .features h2 {
+            text-align: center; font-size: 2.5rem; margin-bottom: 3rem;
+            color: var(--gray-900); font-family: Georgia, serif;
+        }
+
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--gray-50); padding: 2rem; border-radius: 1rem;
+            text-align: center; transition: all 0.3s; border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary-light); background: white;
+        }
+
+        .feature-icon {
+            font-size: 3rem; margin-bottom: 1.5rem; display: inline-block; transition: transform 0.3s;
+        }
+
+        .feature-card:hover .feature-icon { transform: scale(1.2) rotate(5deg); }
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--gray-900); }
+        .feature-card p { color: var(--gray-600); line-height: 1.7; }
+
+        .gamification-section {
+            padding: 4rem 0; background: linear-gradient(to bottom, var(--gray-50), white);
+        }
+
+        .gamification-section h2 {
+            text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--gray-900);
+        }
+
+        .subtitle { text-align: center; font-size: 1.25rem; color: var(--gray-600); margin-bottom: 3rem; }
+
+        .game-stats {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem; margin: 0 auto 4rem; max-width: 800px;
+        }
+
+        .stat-circle {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white; border-radius: 50%; width: 150px; height: 150px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            margin: 0 auto; box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s; position: relative; overflow: hidden;
+        }
+
+        .stat-circle::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent);
+        }
+
+        .stat-circle:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+        .stat-number { font-size: 2.5rem; font-weight: 800; position: relative; z-index: 1; }
+        .stat-label { font-size: 0.875rem; opacity: 0.9; position: relative; z-index: 1; }
+
+        .gamification-section > .container > h3 {
+            text-align: center; font-size: 1.75rem; color: var(--gray-900); margin-bottom: 1.5rem;
+        }
+
+        .progress-tracker {
+            display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;
+            margin: 3rem 0; padding: 2rem; background: white;
+            border-radius: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .career-badge {
+            font-size: 3rem; width: 80px; height: 80px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 1rem; transition: all 0.3s; cursor: pointer;
+        }
+
+        .career-badge.locked { filter: grayscale(100%); opacity: 0.3; background: var(--gray-100); }
+        .career-badge.unlocked {
+            filter: grayscale(0%); opacity: 1;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            animation: badgeUnlock 0.6s ease-out;
+        }
+
+        .career-badge:hover { transform: scale(1.15); }
+
+        @keyframes badgeUnlock {
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        .quiz-container {
+            background: white; padding: 3rem; border-radius: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1); margin: 3rem auto; max-width: 800px;
+        }
+
+        .quiz-container h3 {
+            text-align: center; color: var(--gray-900); margin-bottom: 2rem; font-size: 1.75rem;
+        }
+
+        .quiz-question {
+            font-size: 1.25rem; font-weight: 600; color: var(--gray-800);
+            text-align: center; margin-bottom: 2rem; line-height: 1.6;
+        }
+
+        .quiz-options {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem; margin-bottom: 2rem;
+        }
+
+        .quiz-option {
+            padding: 1.5rem; background: var(--gray-50); border: 2px solid var(--gray-200);
+            border-radius: 0.5rem; cursor: pointer; transition: all 0.3s;
+            font-size: 1rem; font-weight: 500; color: var(--gray-700);
+        }
+
+        .quiz-option:hover {
+            background: var(--primary-light); color: white; border-color: var(--primary);
+            transform: translateY(-3px); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .quiz-result {
+            display: none; text-align: center; padding: 2rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            color: white; border-radius: 1rem; animation: fadeInScale 0.5s ease-out;
+        }
+
+        .quiz-result h3 { color: white; margin-bottom: 1.5rem; }
+        .quiz-result p { font-size: 1.125rem; margin-bottom: 2rem; }
+
+        .resources-preview { padding: 4rem 0; background: white; }
+
+        .resources-preview h2 {
+            text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--gray-900);
+        }
+
+        .resource-categories {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem; margin-top: 3rem;
+        }
+
+        .category-card {
+            background: var(--gray-50); padding: 3rem; border-radius: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s; border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary); background: white;
+        }
+
+        .category-icon { font-size: 4rem; text-align: center; margin-bottom: 1.5rem; }
+        .category-card h3 { font-size: 1.75rem; color: var(--gray-900); margin-bottom: 1rem; text-align: center; }
+        .category-card > p { color: var(--gray-600); text-align: center; margin-bottom: 2rem; }
+
+        .download-reward {
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            padding: 1.5rem; border-radius: 0.5rem; text-align: center; margin-bottom: 1.5rem;
+        }
+
+        .reward-badge { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .download-reward p { color: white; font-size: 0.875rem; line-height: 1.5; }
+        .download-reward strong { display: block; font-size: 1rem; margin-bottom: 0.25rem; }
+
+        .download-links { display: flex; flex-direction: column; gap: 1rem; }
+
+        .download-link {
+            display: block; padding: 1.5rem; background: var(--primary); color: white;
+            text-decoration: none; border-radius: 0.5rem; text-align: center;
+            font-weight: 600; transition: all 0.3s;
+        }
+
+        .download-link:hover {
+            background: var(--primary-dark); transform: translateX(5px); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .impact {
+            padding: 4rem 0; background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
+            color: white;
+        }
+
+        .impact h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; font-family: Georgia, serif; }
+
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem; margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+            padding: 2rem; border-radius: 1rem; text-align: center;
+            border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s;
+        }
+
+        .stat-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.15); }
+        .stat-card .stat-number { font-size: 3rem; font-weight: 800; color: var(--accent-light); margin-bottom: 0.5rem; }
+        .stat-card .stat-label { font-size: 0.875rem; opacity: 0.9; line-height: 1.5; }
+
+        .mission-statement { max-width: 800px; margin: 0 auto; text-align: center; }
+        .mission-statement h3 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--accent-light); }
+        .mission-statement p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem; opacity: 0.95; }
+
+        .mission-quote {
+            background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 1rem;
+            font-size: 1.5rem; font-style: italic; margin: 3rem 0; border-left: 4px solid var(--accent);
+        }
+
+        .download-section { padding: 4rem 0; background: var(--gray-50); }
+
+        .download-section h2 {
+            text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--gray-900);
+        }
+
+        .download-section > .container > p {
+            text-align: center; font-size: 1.125rem; color: var(--gray-600); margin-bottom: 3rem;
+        }
+
+        .download-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;
+        }
+
+        .download-card {
+            background: white; padding: 3rem; border-radius: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1); transition: all 0.3s;
+        }
+
+        .download-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+        .download-card h3 { font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--gray-900); text-align: center; }
+        .download-card ul { list-style: none; margin-bottom: 2rem; }
+
+        .download-card li {
+            padding: 1rem 0; padding-left: 1.75rem; position: relative;
+            color: var(--gray-600); line-height: 1.6;
+        }
+
+        .download-card li::before {
+            content: '✓'; position: absolute; left: 0; color: var(--secondary);
+            font-weight: bold; font-size: 1.25rem;
+        }
+
+        footer { background: var(--gray-900); color: white; padding: 4rem 0 1.5rem; }
+
+        .footer-content {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem; margin-bottom: 3rem;
+        }
+
+        .footer-section h4 { font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--accent-light); }
+        .footer-section p { opacity: 0.8; line-height: 1.7; }
+        .footer-section ul { list-style: none; }
+        .footer-section li { margin-bottom: 1rem; }
+        .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.15s; }
+        .footer-section a:hover { color: var(--accent-light); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;
+            text-align: center; opacity: 0.7; font-size: 0.875rem;
+        }
+
+        .celebration {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: white; padding: 2rem 3rem; border-radius: 1.5rem;
+            font-size: 1.25rem; font-weight: 600; z-index: 1000;
+            box-shadow: 0 20px 25px rgba(0,0,0,0.1); animation: celebrationPop 0.5s ease-out;
+            text-align: center; max-width: 90%;
+        }
+
+        @keyframes celebrationPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 2.5rem; }
+            .tagline { font-size: 1.25rem; }
+            .hero-description { font-size: 1rem; }
+            .features h2, .gamification-section h2, .resources-preview h2, .impact h2, .download-section h2 { font-size: 2rem; }
+            .cta-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .game-stats { grid-template-columns: repeat(2, 1fr); }
+            .stat-circle { width: 120px; height: 120px; }
+            .stat-number { font-size: 2rem; }
+            .quiz-options { grid-template-columns: 1fr; }
+            .features-grid, .resource-categories, .download-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+            .mission-quote { font-size: 1.125rem; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 1rem; }
+            header { padding: 2rem 0; }
+            .logo { font-size: 2rem; }
+            .career-badge { width: 60px; height: 60px; font-size: 2rem; }
+            .stat-circle { width: 100px; height: 100px; }
+            .celebration { font-size: 1rem; padding: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -30,45 +396,44 @@
                     Play career games, earn badges, and download free workbooks!
                 </div>
                 <div class="cta-buttons">
-                    <a href="#games" class="btn btn-primary" aria-label="Play career exploration games">Play Career Games</a>
-                    <a href="#resources" class="btn btn-secondary" aria-label="Download free educational resources">Download Resources</a>
+                    <a href="#games" class="btn btn-primary">Play Career Games</a>
+                    <a href="#resources" class="btn btn-secondary">Download Resources</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
             <h2>Everything You Need for Career-Integrated Learning</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon" role="img" aria-label="Gamified learning icon">🎮</div>
+                    <div class="feature-icon">🎮</div>
                     <h3>Gamified Learning</h3>
                     <p>Earn points, badges, and level up as you explore different careers through interactive games and activities.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon" role="img" aria-label="Curriculum aligned icon">📚</div>
+                    <div class="feature-icon">📚</div>
                     <h3>GES Curriculum Aligned</h3>
                     <p>All resources perfectly aligned with Ghana Education Service curriculum standards.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon" role="img" aria-label="Home learning icon">🏠</div>
+                    <div class="feature-icon">🏠</div>
                     <h3>Home Learning Ready</h3>
                     <p>Designed for parents and students to use independently with clear instructions.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon" role="img" aria-label="Career discovery icon">🎯</div>
+                    <div class="feature-icon">🎯</div>
                     <h3>Career Discovery</h3>
                     <p>Interactive quizzes and activities to help students discover their ideal career paths.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon" role="img" aria-label="Free resources icon">💰</div>
+                    <div class="feature-icon">💰</div>
                     <h3>Completely Free</h3>
                     <p>Quality educational resources accessible to every Ghanaian family.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon" role="img" aria-label="Print and use icon">🖨️</div>
+                    <div class="feature-icon">🖨️</div>
                     <h3>Print & Use</h3>
                     <p>Download, print, and start learning immediately. No special equipment required.</p>
                 </div>
@@ -76,13 +441,11 @@
         </div>
     </section>
 
-    <!-- Gamification Section -->
     <section class="gamification-section" id="games">
         <div class="container">
             <h2>🎮 Career Exploration Games</h2>
             <p class="subtitle">Play, learn, and earn rewards while discovering your future career!</p>
             
-            <!-- Game Stats -->
             <div class="game-stats">
                 <div class="stat-circle">
                     <div class="stat-number" id="points-counter">0</div>
@@ -102,105 +465,180 @@
                 </div>
             </div>
 
-            <!-- Career Badges Progress -->
             <h3>Collect All 12 Career Badges!</h3>
-            <div class="progress-tracker">
-                <div class="career-badge locked" data-career="medical" title="Medical Careers" role="img" aria-label="Medical Careers Badge">🏥</div>
-                <div class="career-badge locked" data-career="engineering" title="Engineering" role="img" aria-label="Engineering Badge">🔧</div>
-                <div class="career-badge locked" data-career="technology" title="Technology" role="img" aria-label="Technology Badge">💻</div>
-                <div class="career-badge locked" data-career="business" title="Business" role="img" aria-label="Business Badge">🏢</div>
-                <div class="career-badge locked" data-career="law" title="Law" role="img" aria-label="Law Badge">⚖️</div>
-                <div class="career-badge locked" data-career="arts" title="Arts & Media" role="img" aria-label="Arts and Media Badge">🎨</div>
-                <div class="career-badge locked" data-career="protective" title="Protective Services" role="img" aria-label="Protective Services Badge">🛡️</div>
-                <div class="career-badge locked" data-career="banking" title="Banking" role="img" aria-label="Banking Badge">💰</div>
-                <div class="career-badge locked" data-career="entrepreneurship" title="Entrepreneurship" role="img" aria-label="Entrepreneurship Badge">🚀</div>
-                <div class="career-badge locked" data-career="fashion" title="Fashion" role="img" aria-label="Fashion Badge">👗</div>
-                <div class="career-badge locked" data-career="education" title="Education" role="img" aria-label="Education Badge">👨‍🏫</div>
-                <div class="career-badge locked" data-career="agriculture" title="Agriculture" role="img" aria-label="Agriculture Badge">🌱</div>
+            <div class="progress-tracker" id="progress-tracker">
+                <div class="career-badge locked" data-career="medical" title="Medical Careers">🏥</div>
+                <div class="career-badge locked" data-career="engineering" title="Engineering">🔧</div>
+                <div class="career-badge locked" data-career="technology" title="Technology">💻</div>
+                <div class="career-badge locked" data-career="business" title="Business">🏢</div>
+                <div class="career-badge locked" data-career="law" title="Law">⚖️</div>
+                <div class="career-badge locked" data-career="arts" title="Arts & Media">🎨</div>
+                <div class="career-badge locked" data-career="protective" title="Protective Services">🛡️</div>
+                <div class="career-badge locked" data-career="banking" title="Banking">💰</div>
+                <div class="career-badge locked" data-career="entrepreneurship" title="Entrepreneurship">🚀</div>
+                <div class="career-badge locked" data-career="fashion" title="Fashion">👗</div>
+                <div class="career-badge locked" data-career="education" title="Education">👨‍🏫</div>
+                <div class="career-badge locked" data-career="agriculture" title="Agriculture">🌱</div>
             </div>
 
-            <!-- Career Match Quiz -->
             <div class="quiz-container">
                 <h3>🔍 Which Career Fits You?</h3>
                 <div class="quiz-question" id="current-question">
                     What type of activities do you enjoy the most?
                 </div>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-answer="creative" aria-label="Select creating art or stories">Creating art or stories</button>
-                    <button class="quiz-option" data-answer="analytical" aria-label="Select solving puzzles and problems">Solving puzzles and problems</button>
-                    <button class="quiz-option" data-answer="helping" aria-label="Select helping and teaching others">Helping and teaching others</button>
-                    <button class="quiz-option" data-answer="organizing" aria-label="Select planning and organizing things">Planning and organizing things</button>
+                <div class="quiz-options" id="quiz-options">
+                    <button class="quiz-option" data-answer="creative">Creating art or stories</button>
+                    <button class="quiz-option" data-answer="analytical">Solving puzzles and problems</button>
+                    <button class="quiz-option" data-answer="helping">Helping and teaching others</button>
+                    <button class="quiz-option" data-answer="organizing">Planning and organizing things</button>
                 </div>
                 <div class="quiz-result" id="quiz-result">
                     <h3>🎉 Your Career Match!</h3>
                     <p id="career-match">Based on your answers, you might enjoy careers in...</p>
-                    <button class="btn btn-primary" onclick="restartQuiz()" aria-label="Restart career quiz">Take Quiz Again</button>
+                    <button class="btn btn-primary" onclick="restartQuiz()">Take Quiz Again</button>
                 </div>
             </div>
-            <button class="btn btn-secondary" onclick="resetProgress()" aria-label="Reset user progress">Reset Progress</button>
+            <button class="btn btn-secondary" onclick="resetProgress()">Reset Progress</button>
         </div>
     </section>
 
-    <!-- Resources Section with Gamification -->
     <section class="resources-preview" id="resources">
         <div class="container">
             <h2>🎁 Download Resources & Earn Rewards</h2>
             <p class="subtitle">Each download unlocks badges and points for your gaming profile!</p>
             
             <div class="resource-categories">
-                <!-- Medical Professionals -->
                 <div class="category-card">
-                    <div class="category-icon" role="img" aria-label="Medical careers icon">🏥</div>
+                    <div class="category-icon">🏥</div>
                     <h3>Medical Professionals</h3>
                     <p>Explore healthcare careers, nursing, and medical sciences</p>
                     <div class="download-reward">
-                        <div class="reward-badge" role="img" aria-label="Medical Explorer Badge">🎯</div>
+                        <div class="reward-badge">🎯</div>
                         <p><strong>Reward: Medical Explorer Badge</strong><br>+10 Points</p>
                     </div>
                     <div class="download-links">
-                        <a href="https://drive.google.com/uc?export=download&id=1A2B3C4D5E6F7G8H9I0J" 
-                           class="download-link" 
-                           onclick="return unlockAchievement('medical')"
-                           aria-label="Download Medical Workbook">
+                        <a href="#" class="download-link" onclick="return unlockAchievement('medical')">
                             📥 Download Medical Workbook
                         </a>
                     </div>
                 </div>
 
-                <!-- Engineering & Technical -->
                 <div class="category-card">
-                    <div class="category-icon" role="img" aria-label="Engineering icon">🔧</div>
+                    <div class="category-icon">🔧</div>
                     <h3>Engineering & Technical</h3>
                     <p>Problem-solving, design thinking, and building skills</p>
                     <div class="download-reward">
-                        <div class="reward-badge" role="img" aria-label="Engineering Badge">🔧</div>
+                        <div class="reward-badge">🔧</div>
                         <p><strong>Reward: Engineering Badge</strong><br>+10 Points</p>
                     </div>
                     <div class="download-links">
-                        <a href="https://drive.google.com/uc?export=download&id=2B3C4D5E6F7G8H9I0J1" 
-                           class="download-link" 
-                           onclick="return unlockAchievement('engineering')"
-                           aria-label="Download Engineering Workbook">
+                        <a href="#" class="download-link" onclick="return unlockAchievement('engineering')">
                             📥 Download Engineering Workbook
                         </a>
                     </div>
                 </div>
 
-                <!-- Technology & Innovation -->
                 <div class="category-card">
-                    <div class="category-icon" role="img" aria-label="Technology icon">💻</div>
+                    <div class="category-icon">💻</div>
                     <h3>Technology & Innovation</h3>
                     <p>Programming, IT, and digital innovation careers</p>
                     <div class="download-reward">
-                        <div class="reward-badge" role="img" aria-label="Tech Innovator Badge">💻</div>
+                        <div class="reward-badge">💻</div>
                         <p><strong>Reward: Tech Innovator Badge</strong><br>+10 Points</p>
                     </div>
                     <div class="download-links">
-                        <a href="https://drive.google.com/uc?export=download&id=3C4D5E6F7G8H9I0J2" 
-                           class="download-link" 
-                           onclick="return unlockAchievement('technology')"
-                           aria-label="Download Technology Workbook">
+                        <a href="#" class="download-link" onclick="return unlockAchievement('technology')">
                             📥 Download Technology Workbook
+                        </a>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🎨</div>
+                    <h3>Art and Media</h3>
+                    <p>Creative expression, storytelling, and visual communication skills</p>
+                    <div class="download-reward">
+                        <div class="reward-badge">🎨</div>
+                        <p><strong>Reward: Art & Media Badge</strong><br>+10 Points</p>
+                    </div>
+                    <div class="download-links">
+                        <a href="#" class="download-link" onclick="return unlockAchievement('arts')">
+                            📥 Download Art & Media Workbook
+                        </a>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🛡️</div>
+                    <h3>Protective Services</h3>
+                    <p>Modern security, technology, and community protection concepts</p>
+                    <div class="download-reward">
+                        <div class="reward-badge">🛡️</div>
+                        <p><strong>Reward: Protective Services Badge</strong><br>+10 Points</p>
+                    </div>
+                    <div class="download-links">
+                        <a href="#" class="download-link" onclick="return unlockAchievement('protective')">
+                            📥 Download Protective Services Workbook
+                        </a>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🌱</div>
+                    <h3>Agriculture and Food Technology</h3>
+                    <p>Modern farming, food technology, and agricultural innovation</p>
+                    <div class="download-reward">
+                        <div class="reward-badge">🌱</div>
+                        <p><strong>Reward: Agriculture Badge</strong><br>+10 Points</p>
+                    </div>
+                    <div class="download-links">
+                        <a href="#" class="download-link" onclick="return unlockAchievement('agriculture')">
+                            📥 Download Agriculture Workbook
+                        </a>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">👗</div>
+                    <h3>Fashion and Creative Arts</h3>
+                    <p>Fashion design, creative industries, and artistic careers</p>
+                    <div class="download-reward">
+                        <div class="reward-badge">👗</div>
+                        <p><strong>Reward: Fashion Badge</strong><br>+10 Points</p>
+                    </div>
+                    <div class="download-links">
+                        <a href="#" class="download-link" onclick="return unlockAchievement('fashion')">
+                            📥 Download Fashion Workbook
+                        </a>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🏢</div>
+                    <h3>Business and Marketing</h3>
+                    <p>Entrepreneurship, economics, and financial literacy through practical activities</p>
+                    <div class="download-reward">
+                        <div class="reward-badge">🏢</div>
+                        <p><strong>Reward: Business Badge</strong><br>+10 Points</p>
+                    </div>
+                    <div class="download-links">
+                        <a href="#" class="download-link" onclick="return unlockAchievement('business')">
+                            📥 Download Business Workbook
+                        </a>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🚀</div>
+                    <h3>Entrepreneurship and Startup</h3>
+                    <p>Startup basics, business planning, and entrepreneurial skills</p>
+                    <div class="download-reward">
+                        <div class="reward-badge">🚀</div>
+                        <p><strong>Reward: Entrepreneurship Badge</strong><br>+10 Points</p>
+                    </div>
+                    <div class="download-links">
+                        <a href="#" class="download-link" onclick="return unlockAchievement('entrepreneurship')">
+                            📥 Download Entrepreneurship Workbook
                         </a>
                     </div>
                 </div>
@@ -208,10 +646,9 @@
         </div>
     </section>
 
-    <!-- Impact Section -->
     <section class="impact" id="about">
         <div class="container">
-            <h2>Our Mission</h2>
+            <h2>Our Mission & Vision</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number">53%</div>
@@ -230,23 +667,19 @@
                     <div class="stat-label">Can develop initiative</div>
                 </div>
             </div>
-            
             <div class="mission-statement">
-                <h3>Every Student Should Finish School With Direction</h3>
-                <p>Ghana needs young people who don't just seek jobs - but create opportunities. Our gamified resources help students discover what problems they want to solve and develop the initiative to pursue meaningful work.</p>
-                <div class="mission-quote">
-                    "I want to live a life where I solve _______ because _______"
-                </div>
-                <p>Every RETEC student should be able to complete this sentence with confidence.</p>
+                <h3>Empowering Ghana's Future Leaders</h3>
+                <p>At RETEC Digital Library, our mission is to transform education in Ghana by equipping every student with the tools, inspiration, and confidence to pursue meaningful careers. We address a critical gap where 53% of students seek traditional jobs, only 7% explore STEM, and none leave school with a clear direction. Through innovative, career-aligned resources, gamified learning, and free access, we aim to foster a generation of problem-solvers and opportunity creators. Our vision is a Ghana where every young person can say with conviction: <strong>"I want to live a life where I solve [a problem] because [it matters to me]."</strong></p>
+                <div class="mission-quote">"Education is not just preparation for life; it is life itself. - John Dewey"</div>
+                <p>RETEC is committed to bridging the gap between education and real-world impact, ensuring every student graduates with purpose and potential.</p>
             </div>
         </div>
     </section>
 
-    <!-- Download Section -->
     <section class="download-section" id="downloads">
         <div class="container">
-            <h2>Start Your Career Exploration Journey</h2>
-            <p>Download comprehensive packs and start earning rewards today</p>
+            <h2>Start Using RETEC Resources Today</h2>
+            <p>Choose the learning pack that matches your needs</p>
             <div class="download-grid">
                 <div class="download-card">
                     <h3>🏠 For Parents</h3>
@@ -256,7 +689,7 @@
                         <li>Career exploration activities</li>
                         <li>Progress tracking sheets</li>
                     </ul>
-                    <a href="https://drive.google.com/uc?export=download&id=4D5E6F7G8H9I0J3K4" class="btn btn-download" aria-label="Download Parent Pack">Download Parent Pack</a>
+                    <a href="#" class="btn btn-download" onclick="return unlockAchievement('parent')">Download Parent Pack</a>
                 </div>
                 <div class="download-card">
                     <h3>👨‍🎓 For Students</h3>
@@ -266,7 +699,7 @@
                         <li>Career discovery journals</li>
                         <li>Project-based learning</li>
                     </ul>
-                    <a href="https://drive.google.com/uc?export=download&id=5E6F7G8H9I0J4K5L6" class="btn btn-download" aria-label="Download Student Pack">Download Student Pack</a>
+                    <a href="#" class="btn btn-download" onclick="return unlockAchievement('student')">Download Student Pack</a>
                 </div>
                 <div class="download-card">
                     <h3>🏫 For Schools</h3>
@@ -276,36 +709,41 @@
                         <li>Assessment frameworks</li>
                         <li>Curriculum integration support</li>
                     </ul>
-                    <a href="https://drive.google.com/uc?export=download&id=6F7G8H9I0J5K6L7M8" class="btn btn-download" aria-label="Download School Pack">Download School Pack</a>
+                    <a href="#" class="btn btn-download" onclick="return unlockAchievement('school')">Download School Pack</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>RETEC Digital Library</h4>
-                    <p>Developing initiative in young Ghanaians through gamified career education.</p>
+                    <p>Empowering Ghanaian students with career-integrated education.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Career Resources</h4>
                     <ul>
-                        <li><a href="#resources">Engineering & Technical</a></li>
-                        <li><a href="#resources">Business & Finance</a></li>
-                        <li><a href="#resources">Arts & Media</a></li>
-                        <li><a href="#resources">Healthcare</a></li>
-                        <li><a href="#games">Career Games</a></li>
+                        <li><a href="#resources">Medical</a></li>
+                        <li><a href="#resources">Engineering</a></li>
+                        <li><a href="#resources">Technology</a></li>
+                        <li><a href="#resources">All Careers</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="#">How to Use Resources</a></li>
-                        <li><a href="#">Parent Guidelines</a></li>
-                        <li><a href="#">Teacher Support</a></li>
+                        <li><a href="#">How to Use</a></li>
+                        <li><a href="#">Parent Guides</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="mailto:readingtimescareer@gmail.com">Email: readingtimescareer@gmail.com</a></li>
+                        <li><a href="https://wa.me/233247463901" target="_blank">WhatsApp: +233 (0) 247463901</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -313,284 +751,133 @@
                     <ul>
                         <li><a href="#about">Our Mission</a></li>
                         <li><a href="#">Impact Stories</a></li>
-                        <li><a href="#">Join Our Team</a></li>
+                        <li><a href="#">Join Us</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Reading Times Education & Careers (RETEC). All rights reserved. | Empowering Ghanaian students through gamified learning.</p>
+                <p>&copy; 2025 Reading Times Education & Careers (RETEC). All rights reserved. | Designed with passion for Ghana's future.</p>
             </div>
         </div>
     </footer>
 
+    <div class="celebration" id="celebration" style="display: none;">
+        <p>Congratulations! You unlocked a new badge! 🎉</p>
+    </div>
+
     <script>
-        // Gamification System
-        let userProgress = {
-            points: 0,
-            badges: 0,
-            level: 1,
-            downloads: 0,
-            unlockedCareers: []
-        };
+        // Store progress in localStorage
+        let points = parseInt(localStorage.getItem('retecPoints')) || 0;
+        let badges = JSON.parse(localStorage.getItem('retecBadges')) || {};
+        let level = parseInt(localStorage.getItem('retecLevel')) || 1;
+        let downloads = parseInt(localStorage.getItem('retecDownloads')) || 0;
 
-        // Load progress from localStorage
-        function loadProgress() {
-            try {
-                const saved = localStorage.getItem('retecProgress');
-                if (saved) {
-                    userProgress = JSON.parse(saved);
-                    updateDisplay();
-                }
-            } catch (e) {
-                console.error('Failed to load progress:', e);
-                showCelebration('⚠️ Unable to load progress. Please enable local storage.');
-            }
+        // Update UI
+        function updateStats() {
+            document.getElementById('points-counter').textContent = points;
+            document.getElementById('badges-counter').textContent = Object.keys(badges).length;
+            document.getElementById('level-counter').textContent = level;
+            document.getElementById('downloads-counter').textContent = downloads;
+            localStorage.setItem('retecPoints', points);
+            localStorage.setItem('retecBadges', JSON.stringify(badges));
+            localStorage.setItem('retecLevel', level);
+            localStorage.setItem('retecDownloads', downloads);
+            updateBadges();
         }
 
-        // Save progress to localStorage
-        function saveProgress() {
-            try {
-                localStorage.setItem('retecProgress', JSON.stringify(userProgress));
-            } catch (e) {
-                console.error('Failed to save progress:', e);
-                showCelebration('⚠️ Unable to save progress. Please check storage settings.');
-            }
-        }
-
-        // Update all display elements
-        function updateDisplay() {
-            document.getElementById('points-counter').textContent = userProgress.points;
-            document.getElementById('badges-counter').textContent = userProgress.badges;
-            document.getElementById('level-counter').textContent = userProgress.level;
-            document.getElementById('downloads-counter').textContent = userProgress.downloads;
-            
-            // Update career badges
-            userProgress.unlockedCareers.forEach(career => {
-                const badge = document.querySelector(`[data-career="${career}"]`);
-                if (badge) {
+        // Update badges display
+        function updateBadges() {
+            const tracker = document.getElementById('progress-tracker');
+            tracker.querySelectorAll('.career-badge').forEach(badge => {
+                const career = badge.getAttribute('data-career');
+                if (badges[career]) {
                     badge.classList.remove('locked');
                     badge.classList.add('unlocked');
                 }
             });
-            
-            // Check level up
-            checkLevelUp();
         }
 
-        // Unlock career achievement
+        // Unlock achievement
         function unlockAchievement(career) {
-            if (userProgress.unlockedCareers.includes(career)) {
-                showCelebration(`You already unlocked the ${getCareerName(career)} badge!`);
-                return false;
+            if (!badges[career]) {
+                badges[career] = true;
+                points += 10;
+                downloads += 1;
+                if (points >= level * 50) level++;
+                updateStats();
+                showCelebration(`Unlocked ${career.charAt(0).toUpperCase() + career.slice(1)} Badge!`);
             }
-            try {
-                userProgress.unlockedCareers.push(career);
-                userProgress.badges++;
-                userProgress.points += 10;
-                userProgress.downloads++;
-                saveProgress();
-                updateDisplay();
-                showCelebration(`🎉 Unlocked ${getCareerName(career)} badge! +10 points`);
-                return true;
-            } catch (e) {
-                console.error('Error unlocking achievement:', e);
-                showCelebration('⚠️ Error unlocking badge. Please try again.');
-                return false;
-            }
+            return false; // Prevent default link behavior
         }
 
-        function getCareerName(career) {
-            const names = {
-                medical: "Medical Explorer",
-                engineering: "Engineering",
-                technology: "Tech Innovator",
-                business: "Business",
-                law: "Law",
-                arts: "Arts & Media",
-                protective: "Protective Services",
-                banking: "Banking",
-                entrepreneurship: "Entrepreneurship",
-                fashion: "Fashion",
-                education: "Education",
-                agriculture: "Agriculture"
-            };
-            return names[career] || career;
-        }
-
-        function checkLevelUp() {
-            const newLevel = Math.floor(userProgress.points / 50) + 1;
-            if (newLevel > userProgress.level) {
-                userProgress.level = newLevel;
-                saveProgress();
-                showCelebration(`🚀 Level Up! You're now level ${newLevel}`);
-            }
-        }
-
+        // Show celebration popup
         function showCelebration(message) {
-            const celebration = document.createElement('div');
-            celebration.className = 'celebration';
+            const celebration = document.getElementById('celebration');
             celebration.textContent = message;
-            document.body.appendChild(celebration);
-            setTimeout(() => {
-                celebration.remove();
-            }, 3000);
+            celebration.style.display = 'block';
+            setTimeout(() => celebration.style.display = 'none', 3000);
+        }
+
+        // Quiz logic
+        const quizQuestions = [
+            {
+                question: "What type of activities do you enjoy the most?",
+                options: { creative: "Creating art or stories", analytical: "Solving puzzles and problems", helping: "Helping and teaching others", organizing: "Planning and organizing things" },
+                career: { creative: "arts", analytical: "technology", helping: "medical", organizing: "business" }
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        const quizQuestion = document.getElementById('current-question');
+        const quizOptions = document.getElementById('quiz-options');
+        const quizResult = document.getElementById('quiz-result');
+        const careerMatch = document.getElementById('career-match');
+
+        function loadQuestion() {
+            const q = quizQuestions[currentQuestionIndex];
+            quizQuestion.textContent = q.question;
+            quizOptions.innerHTML = '';
+            for (let key in q.options) {
+                const button = document.createElement('button');
+                button.className = 'quiz-option';
+                button.textContent = q.options[key];
+                button.setAttribute('data-answer', key);
+                button.onclick = () => checkAnswer(key, q.career[key]);
+                quizOptions.appendChild(button);
+            }
+            quizResult.style.display = 'none';
+        }
+
+        function checkAnswer(answer, career) {
+            quizOptions.style.display = 'none';
+            quizResult.style.display = 'block';
+            careerMatch.textContent = `Based on your answers, you might enjoy careers in ${career.charAt(0).toUpperCase() + career.slice(1)}!`;
+            points += 5;
+            updateStats();
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            quizOptions.style.display = 'grid';
+            quizResult.style.display = 'none';
+            loadQuestion();
         }
 
         // Reset progress
         function resetProgress() {
-            if (confirm('Are you sure you want to reset your progress? This cannot be undone.')) {
-                userProgress = { points: 0, badges: 0, level: 1, downloads: 0, unlockedCareers: [] };
-                saveProgress();
-                updateDisplay();
-                showCelebration('Progress reset successfully!');
-                document.querySelectorAll('.career-badge').forEach(badge => {
-                    badge.classList.remove('unlocked');
-                    badge.classList.add('locked');
-                });
+            if (confirm('Are you sure you want to reset all progress?')) {
+                points = 0;
+                badges = {};
+                level = 1;
+                downloads = 0;
+                updateStats();
+                showCelebration('Progress reset! Start fresh!');
             }
         }
 
-        // Quiz System
-        const quizQuestions = [
-            {
-                question: "What type of activities do you enjoy the most?",
-                options: {
-                    creative: "Creating art or stories",
-                    analytical: "Solving puzzles and problems",
-                    helping: "Helping and teaching others",
-                    organizing: "Planning and organizing things"
-                },
-                weights: {
-                    creative: { arts: 2, fashion: 1 },
-                    analytical: { engineering: 2, technology: 1 },
-                    helping: { medical: 2, education: 1 },
-                    organizing: { business: 2, law: 1 }
-                }
-            },
-            {
-                question: "What's your favorite school subject?",
-                options: {
-                    science: "Science and experiments",
-                    arts: "Arts and creative writing",
-                    math: "Mathematics and calculations",
-                    social: "Social studies and history"
-                },
-                weights: {
-                    science: { medical: 2, technology: 1 },
-                    arts: { arts: 2, fashion: 1 },
-                    math: { engineering: 2, banking: 1 },
-                    social: { law: 2, education: 1 }
-                }
-            },
-            {
-                question: "What environment do you thrive in?",
-                options: {
-                    lab: "Labs and technical spaces",
-                    office: "Structured office settings",
-                    creative: "Creative studios",
-                    outdoors: "Outdoor or community settings"
-                },
-                weights: {
-                    lab: { engineering: 2, technology: 1 },
-                    office: { business: 2, banking: 1 },
-                    creative: { arts: 2, fashion: 1 },
-                    outdoors: { agriculture: 2, protective: 1 }
-                }
-            }
-        ];
-
-        let currentQuestion = 0;
-        let quizAnswers = [];
-
-        function startQuiz() {
-            currentQuestion = 0;
-            quizAnswers = [];
-            showQuestion(0);
-        }
-
-        function showQuestion(index) {
-            const question = quizQuestions[index];
-            document.getElementById('current-question').textContent = question.question;
-            
-            const optionsContainer = document.querySelector('.quiz-options');
-            optionsContainer.innerHTML = '';
-            
-            Object.entries(question.options).forEach(([key, text]) => {
-                const button = document.createElement('button');
-                button.className = 'quiz-option';
-                button.textContent = text;
-                button.setAttribute('aria-label', `Select ${text}`);
-                button.onclick = () => selectAnswer(key);
-                optionsContainer.appendChild(button);
-            });
-            
-            document.getElementById('quiz-result').style.display = 'none';
-        }
-
-        function selectAnswer(answer) {
-            quizAnswers.push(answer);
-            currentQuestion++;
-            
-            if (currentQuestion < quizQuestions.length) {
-                showQuestion(currentQuestion);
-            } else {
-                showQuizResult();
-            }
-        }
-
-        function showQuizResult() {
-            const result = calculateCareerMatch();
-            document.getElementById('career-match').textContent = result;
-            document.getElementById('quiz-result').style.display = 'block';
-            
-            userProgress.points += 15;
-            saveProgress();
-            updateDisplay();
-            showCelebration('🎯 Quiz Completed! +15 points');
-        }
-
-        function calculateCareerMatch() {
-            const careerScores = {
-                medical: 0, engineering: 0, technology: 0, business: 0, law: 0, arts: 0,
-                protective: 0, banking: 0, entrepreneurship: 0, fashion: 0, education: 0, agriculture: 0
-            };
-            
-            quizAnswers.forEach((answer, index) => {
-                const weights = quizQuestions[index].weights[answer];
-                for (const career in weights) {
-                    careerScores[career] += weights[career];
-                }
-            });
-            
-            const topCareer = Object.keys(careerScores).reduce((a, b) => careerScores[a] > careerScores[b] ? a : b);
-            return `Based on your answers, you might enjoy careers in ${getCareerName(topCareer)}!`;
-        }
-
-        function restartQuiz() {
-            startQuiz();
-        }
-
-        // Check download link (basic validation)
-        function checkDownloadLink(link) {
-            fetch(link, { method: 'HEAD' })
-                .then(response => {
-                    if (!response.ok) {
-                        showCelebration('⚠️ Download link is unavailable. Please try again later.');
-                    }
-                })
-                .catch(() => showCelebration('⚠️ Error checking download link.'));
-        }
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            loadProgress();
-            startQuiz();
-            
-            // Add download link checks
-            document.querySelectorAll('.download-link').forEach(link => {
-                link.addEventListener('click', () => checkDownloadLink(link.href));
-            });
-        });
+        // Initialize
+        updateStats();
+        loadQuestion();
     </script>
 </body>
 </html>
