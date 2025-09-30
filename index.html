@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RETEC Digital Library</title>
+    <title>RETEC Digital Library - Free Career Resources for JHS Students Ghana</title>
+    <meta name="description" content="Free career-aligned workbooks for JHS students in Ghana. Download resources for Engineering, Business, Healthcare, Law and more. GES curriculum aligned.">
+    <meta name="keywords" content="career resources Ghana, JHS workbooks, free education Ghana, career exploration Ghana, GES curriculum">
+    
     <style>
+        /* Reset and Global Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
             --primary: #2563eb; --primary-dark: #1e40af; --primary-light: #60a5fa;
             --secondary: #10b981; --secondary-dark: #059669;
@@ -14,668 +17,447 @@
             --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
             --gray-600: #4b5563; --gray-700: #374151; --gray-800: #1f2937; --gray-900: #111827;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6; color: var(--gray-800); background: var(--gray-50);
         }
-
         .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
+        /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white; padding: 4rem 0; text-align: center; position: relative; overflow: hidden;
         }
-
         header::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 80px);
             opacity: 0.3;
         }
-
         .header-content { position: relative; z-index: 1; }
-
-        .logo {
-            font-size: 3rem; font-weight: 800; letter-spacing: -0.05em;
-            margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        .tagline {
-            font-size: 1.5rem; font-weight: 300; margin-bottom: 1.5rem;
-            opacity: 0.95; animation: fadeInDown 0.8s ease-out 0.2s both;
-        }
-
-        .hero-description {
-            font-size: 1.125rem; max-width: 700px; margin: 0 auto 2rem;
-            line-height: 1.8; animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .cta-buttons {
-            display: flex; gap: 1.5rem; justify-content: center;
-            flex-wrap: wrap; animation: fadeInUp 0.8s ease-out 0.6s both;
-        }
-
-        .btn {
-            display: inline-block; padding: 0.875rem 2rem; border-radius: 1rem;
-            font-weight: 600; text-decoration: none; transition: all 0.3s;
-            cursor: pointer; border: none; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
+        .logo { font-size: 3rem; font-weight: 800; letter-spacing: -0.05em; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); animation: fadeInDown 0.8s ease-out; }
+        .tagline { font-size: 1.5rem; font-weight: 300; margin-bottom: 1.5rem; opacity: 0.95; animation: fadeInDown 0.8s ease-out 0.2s both; }
+        .hero-description { font-size: 1.125rem; max-width: 700px; margin: 0 auto 2rem; line-height: 1.8; animation: fadeInUp 0.8s ease-out 0.4s both; }
+        .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s ease-out 0.6s both; }
+        .btn { display: inline-block; padding: 0.875rem 2rem; border-radius: 1rem; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-primary { background: white; color: var(--primary); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-        .btn-secondary { background: var(--secondary); color: white; }
-        .btn-secondary:hover { background: var(--secondary-dark); transform: translateY(-2px); }
         .btn-download { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); color: white; width: 100%; }
+        .btn-download:hover { transform: translateY(-2px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
 
+        /* Features Section */
         .features { padding: 4rem 0; background: white; }
-
-        .features h2 {
-            text-align: center; font-size: 2.5rem; margin-bottom: 3rem;
-            color: var(--gray-900); font-family: Georgia, serif;
-        }
-
-        .features-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--gray-50); padding: 2rem; border-radius: 1rem;
-            text-align: center; transition: all 0.3s; border: 2px solid transparent;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-            border-color: var(--primary-light); background: white;
-        }
-
-        .feature-icon {
-            font-size: 3rem; margin-bottom: 1.5rem; display: inline-block; transition: transform 0.3s;
-        }
-
+        .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--gray-900); font-family: Georgia, serif; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .feature-card { background: var(--gray-50); padding: 2rem; border-radius: 1rem; text-align: center; transition: all 0.3s; border: 2px solid transparent; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-color: var(--primary-light); background: white; }
+        .feature-icon { font-size: 3rem; margin-bottom: 1.5rem; display: inline-block; transition: transform 0.3s; }
         .feature-card:hover .feature-icon { transform: scale(1.2) rotate(5deg); }
         .feature-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--gray-900); }
         .feature-card p { color: var(--gray-600); line-height: 1.7; }
 
-        .gamification-section {
-            padding: 4rem 0; background: linear-gradient(to bottom, var(--gray-50), white);
-        }
-
-        .gamification-section h2 {
-            text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--gray-900);
-        }
-
-        .subtitle { text-align: center; font-size: 1.25rem; color: var(--gray-600); margin-bottom: 3rem; }
-
-        .game-stats {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem; margin: 0 auto 4rem; max-width: 800px;
-        }
-
-        .stat-circle {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; border-radius: 50%; width: 150px; height: 150px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            margin: 0 auto; box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s; position: relative; overflow: hidden;
-        }
-
-        .stat-circle::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent);
-        }
-
-        .stat-circle:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
-        .stat-number { font-size: 2.5rem; font-weight: 800; position: relative; z-index: 1; }
-        .stat-label { font-size: 0.875rem; opacity: 0.9; position: relative; z-index: 1; }
-
-        .gamification-section > .container > h3 {
-            text-align: center; font-size: 1.75rem; color: var(--gray-900); margin-bottom: 1.5rem;
-        }
-
-        .progress-tracker {
-            display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;
-            margin: 3rem 0; padding: 2rem; background: white;
-            border-radius: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .career-badge {
-            font-size: 3rem; width: 80px; height: 80px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 1rem; transition: all 0.3s; cursor: pointer;
-        }
-
-        .career-badge.locked { filter: grayscale(100%); opacity: 0.3; background: var(--gray-100); }
-        .career-badge.unlocked {
-            filter: grayscale(0%); opacity: 1;
-            background: linear-gradient(135deg, var(--accent-light), var(--accent));
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-            animation: badgeUnlock 0.6s ease-out;
-        }
-
-        .career-badge:hover { transform: scale(1.15); }
-
-        @keyframes badgeUnlock {
-            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
-            50% { transform: scale(1.2) rotate(10deg); }
-            100% { transform: scale(1) rotate(0); opacity: 1; }
-        }
-
-        .quiz-container {
-            background: white; padding: 3rem; border-radius: 1.5rem;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1); margin: 3rem auto; max-width: 800px;
-        }
-
-        .quiz-container h3 {
-            text-align: center; color: var(--gray-900); margin-bottom: 2rem; font-size: 1.75rem;
-        }
-
-        .quiz-question {
-            font-size: 1.25rem; font-weight: 600; color: var(--gray-800);
-            text-align: center; margin-bottom: 2rem; line-height: 1.6;
-        }
-
-        .quiz-options {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem; margin-bottom: 2rem;
-        }
-
-        .quiz-option {
-            padding: 1.5rem; background: var(--gray-50); border: 2px solid var(--gray-200);
-            border-radius: 0.5rem; cursor: pointer; transition: all 0.3s;
-            font-size: 1rem; font-weight: 500; color: var(--gray-700);
-        }
-
-        .quiz-option:hover {
-            background: var(--primary-light); color: white; border-color: var(--primary);
-            transform: translateY(-3px); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .quiz-result {
-            display: none; text-align: center; padding: 2rem;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
-            color: white; border-radius: 1rem; animation: fadeInScale 0.5s ease-out;
-        }
-
-        .quiz-result h3 { color: white; margin-bottom: 1.5rem; }
-        .quiz-result p { font-size: 1.125rem; margin-bottom: 2rem; }
-
-        .resources-preview { padding: 4rem 0; background: white; }
-
-        .resources-preview h2 {
-            text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--gray-900);
-        }
-
-        .resource-categories {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem; margin-top: 3rem;
-        }
-
-        .category-card {
-            background: var(--gray-50); padding: 3rem; border-radius: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s; border: 2px solid transparent;
-        }
-
-        .category-card:hover {
-            transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1);
-            border-color: var(--primary); background: white;
-        }
-
-        .category-icon { font-size: 4rem; text-align: center; margin-bottom: 1.5rem; }
-        .category-card h3 { font-size: 1.75rem; color: var(--gray-900); margin-bottom: 1rem; text-align: center; }
-        .category-card > p { color: var(--gray-600); text-align: center; margin-bottom: 2rem; }
-
-        .download-reward {
-            background: linear-gradient(135deg, var(--accent-light), var(--accent));
-            padding: 1.5rem; border-radius: 0.5rem; text-align: center; margin-bottom: 1.5rem;
-        }
-
-        .reward-badge { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .download-reward p { color: white; font-size: 0.875rem; line-height: 1.5; }
-        .download-reward strong { display: block; font-size: 1rem; margin-bottom: 0.25rem; }
-
-        .download-links { display: flex; flex-direction: column; gap: 1rem; }
-
-        .download-link {
-            display: block; padding: 1.5rem; background: var(--primary); color: white;
-            text-decoration: none; border-radius: 0.5rem; text-align: center;
-            font-weight: 600; transition: all 0.3s;
-        }
-
-        .download-link:hover {
-            background: var(--primary-dark); transform: translateX(5px); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .impact {
-            padding: 4rem 0; background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
-            color: white;
-        }
-
+        /* Impact Section */
+        .impact { padding: 4rem 0; background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%); color: white; }
         .impact h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; font-family: Georgia, serif; }
-
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem; margin-bottom: 4rem;
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-            padding: 2rem; border-radius: 1rem; text-align: center;
-            border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s;
-        }
-
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .stat-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; }
         .stat-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.15); }
         .stat-card .stat-number { font-size: 3rem; font-weight: 800; color: var(--accent-light); margin-bottom: 0.5rem; }
         .stat-card .stat-label { font-size: 0.875rem; opacity: 0.9; line-height: 1.5; }
-
         .mission-statement { max-width: 800px; margin: 0 auto; text-align: center; }
         .mission-statement h3 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--accent-light); }
         .mission-statement p { font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem; opacity: 0.95; }
+        .mission-quote { background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 1rem; font-size: 1.5rem; font-style: italic; margin: 3rem 0; border-left: 4px solid var(--accent); }
+        .subtitle { text-align: center; font-size: 1.125rem; color: var(--gray-600); margin-bottom: 3rem; }
 
-        .mission-quote {
-            background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 1rem;
-            font-size: 1.5rem; font-style: italic; margin: 3rem 0; border-left: 4px solid var(--accent);
-        }
+        /* Resources Preview */
+        .resources-preview { padding: 4rem 0; background: white; }
+        .resources-preview h2 { text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--gray-900); }
+        .resource-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; margin-top: 3rem; }
+        .category-card { background: var(--gray-50); padding: 3rem; border-radius: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s; border: 2px solid transparent; }
+        .category-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); border-color: var(--primary); background: white; }
+        .category-icon { font-size: 4rem; text-align: center; margin-bottom: 1.5rem; }
+        .category-card h3 { font-size: 1.75rem; color: var(--gray-900); margin-bottom: 1rem; text-align: center; }
+        .category-card p { color: var(--gray-600); text-align: center; margin-bottom: 2rem; line-height: 1.6; }
+        .resource-details { background: white; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem; border: 1px solid var(--gray-200); }
+        .resource-details h4 { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-700); margin-bottom: 0.75rem; }
+        .resource-details ul { list-style: none; }
+        .resource-details li { padding: 0.5rem 0; padding-left: 1.75rem; position: relative; color: var(--gray-600); font-size: 0.9rem; }
+        .resource-details li::before { content: '✓'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.1rem; }
+        .download-link { display: block; padding: 1rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 0.75rem; text-align: center; font-weight: 600; transition: all 0.3s; }
+        .download-link:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
 
+        /* Download Section */
         .download-section { padding: 4rem 0; background: var(--gray-50); }
-
-        .download-section h2 {
-            text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--gray-900);
-        }
-
-        .download-section > .container > p {
-            text-align: center; font-size: 1.125rem; color: var(--gray-600); margin-bottom: 3rem;
-        }
-
-        .download-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;
-        }
-
-        .download-card {
-            background: white; padding: 3rem; border-radius: 1.5rem;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1); transition: all 0.3s;
-        }
-
+        .download-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--gray-900); }
+        .download-section p { text-align: center; font-size: 1.125rem; color: var(--gray-600); margin-bottom: 3rem; }
+        .download-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .download-card { background: white; padding: 3rem; border-radius: 1.5rem; box-shadow: 0 10px 15px rgba(0,0,0,0.1); transition: all 0.3s; }
         .download-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
         .download-card h3 { font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--gray-900); text-align: center; }
         .download-card ul { list-style: none; margin-bottom: 2rem; }
+        .download-card li { padding: 1rem 0; padding-left: 1.75rem; position: relative; color: var(--gray-600); line-height: 1.6; }
+        .download-card li::before { content: '✓'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.25rem; }
 
-        .download-card li {
-            padding: 1rem 0; padding-left: 1.75rem; position: relative;
-            color: var(--gray-600); line-height: 1.6;
-        }
-
-        .download-card li::before {
-            content: '✓'; position: absolute; left: 0; color: var(--secondary);
-            font-weight: bold; font-size: 1.25rem;
-        }
-
+        /* Footer Styles */
         footer { background: var(--gray-900); color: white; padding: 4rem 0 1.5rem; }
-
-        .footer-content {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem; margin-bottom: 3rem;
-        }
-
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
         .footer-section h4 { font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--accent-light); }
         .footer-section p { opacity: 0.8; line-height: 1.7; }
         .footer-section ul { list-style: none; }
         .footer-section li { margin-bottom: 1rem; }
         .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.15s; }
         .footer-section a:hover { color: var(--accent-light); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; text-align: center; opacity: 0.7; font-size: 0.875rem; }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;
-            text-align: center; opacity: 0.7; font-size: 0.875rem;
-        }
+        /* Animations */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        .celebration {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
-            color: white; padding: 2rem 3rem; border-radius: 1.5rem;
-            font-size: 1.25rem; font-weight: 600; z-index: 1000;
-            box-shadow: 0 20px 25px rgba(0,0,0,0.1); animation: celebrationPop 0.5s ease-out;
-            text-align: center; max-width: 90%;
-        }
-
-        @keyframes celebrationPop {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            50% { transform: translate(-50%, -50%) scale(1.1); }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
             .logo { font-size: 2.5rem; }
             .tagline { font-size: 1.25rem; }
             .hero-description { font-size: 1rem; }
-            .features h2, .gamification-section h2, .resources-preview h2, .impact h2, .download-section h2 { font-size: 2rem; }
+            .features h2, .impact h2, .resources-preview h2, .download-section h2 { font-size: 2rem; }
             .cta-buttons { flex-direction: column; }
             .btn { width: 100%; }
-            .game-stats { grid-template-columns: repeat(2, 1fr); }
-            .stat-circle { width: 120px; height: 120px; }
-            .stat-number { font-size: 2rem; }
-            .quiz-options { grid-template-columns: 1fr; }
             .features-grid, .resource-categories, .download-grid { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; }
             .mission-quote { font-size: 1.125rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 480px) {
             .container { padding: 0 1rem; }
             header { padding: 2rem 0; }
             .logo { font-size: 2rem; }
-            .career-badge { width: 60px; height: 60px; font-size: 2rem; }
-            .stat-circle { width: 100px; height: 100px; }
-            .celebration { font-size: 1rem; padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">RETEC</div>
-                <div class="tagline">Digital Library</div>
+                <div class="tagline">Your Child Will Graduate. But Will They Know What To Do Next?</div>
                 <div class="hero-description">
-                    Free Career-Aligned Resources for Parents, Students & Schools<br>
-                    Play career games, earn badges, and download free workbooks!
+                    RETEC develops students who finish school with clear direction about their lives and the initiative to pursue their goals.
                 </div>
                 <div class="cta-buttons">
-                    <a href="#games" class="btn btn-primary">Play Career Games</a>
-                    <a href="#resources" class="btn btn-secondary">Download Resources</a>
+                    <a href="#resources" class="btn btn-primary">Download Free Resources</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="features" id="features">
+    <!-- The Problem -->
+    <section class="impact" id="problem">
         <div class="container">
-            <h2>Everything You Need for Career-Integrated Learning</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>Gamified Learning</h3>
-                    <p>Earn points, badges, and level up as you explore different careers through interactive games and activities.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>GES Curriculum Aligned</h3>
-                    <p>All resources perfectly aligned with Ghana Education Service curriculum standards.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏠</div>
-                    <h3>Home Learning Ready</h3>
-                    <p>Designed for parents and students to use independently with clear instructions.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Career Discovery</h3>
-                    <p>Interactive quizzes and activities to help students discover their ideal career paths.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Completely Free</h3>
-                    <p>Quality educational resources accessible to every Ghanaian family.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🖨️</div>
-                    <h3>Print & Use</h3>
-                    <p>Download, print, and start learning immediately. No special equipment required.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="gamification-section" id="games">
-        <div class="container">
-            <h2>🎮 Career Exploration Games</h2>
-            <p class="subtitle">Play, learn, and earn rewards while discovering your future career!</p>
-            
-            <div class="game-stats">
-                <div class="stat-circle">
-                    <div class="stat-number" id="points-counter">0</div>
-                    <div class="stat-label">Points</div>
-                </div>
-                <div class="stat-circle">
-                    <div class="stat-number" id="badges-counter">0</div>
-                    <div class="stat-label">Badges</div>
-                </div>
-                <div class="stat-circle">
-                    <div class="stat-number" id="level-counter">1</div>
-                    <div class="stat-label">Level</div>
-                </div>
-                <div class="stat-circle">
-                    <div class="stat-number" id="downloads-counter">0</div>
-                    <div class="stat-label">Downloads</div>
-                </div>
-            </div>
-
-            <h3>Collect All 12 Career Badges!</h3>
-            <div class="progress-tracker" id="progress-tracker">
-                <div class="career-badge locked" data-career="medical" title="Medical Careers">🏥</div>
-                <div class="career-badge locked" data-career="engineering" title="Engineering">🔧</div>
-                <div class="career-badge locked" data-career="technology" title="Technology">💻</div>
-                <div class="career-badge locked" data-career="business" title="Business">🏢</div>
-                <div class="career-badge locked" data-career="law" title="Law">⚖️</div>
-                <div class="career-badge locked" data-career="arts" title="Arts & Media">🎨</div>
-                <div class="career-badge locked" data-career="protective" title="Protective Services">🛡️</div>
-                <div class="career-badge locked" data-career="banking" title="Banking">💰</div>
-                <div class="career-badge locked" data-career="entrepreneurship" title="Entrepreneurship">🚀</div>
-                <div class="career-badge locked" data-career="fashion" title="Fashion">👗</div>
-                <div class="career-badge locked" data-career="education" title="Education">👨‍🏫</div>
-                <div class="career-badge locked" data-career="agriculture" title="Agriculture">🌱</div>
-            </div>
-
-            <div class="quiz-container">
-                <h3>🔍 Which Career Fits You?</h3>
-                <div class="quiz-question" id="current-question">
-                    What type of activities do you enjoy the most?
-                </div>
-                <div class="quiz-options" id="quiz-options">
-                    <button class="quiz-option" data-answer="creative">Creating art or stories</button>
-                    <button class="quiz-option" data-answer="analytical">Solving puzzles and problems</button>
-                    <button class="quiz-option" data-answer="helping">Helping and teaching others</button>
-                    <button class="quiz-option" data-answer="organizing">Planning and organizing things</button>
-                </div>
-                <div class="quiz-result" id="quiz-result">
-                    <h3>🎉 Your Career Match!</h3>
-                    <p id="career-match">Based on your answers, you might enjoy careers in...</p>
-                    <button class="btn btn-primary" onclick="restartQuiz()">Take Quiz Again</button>
-                </div>
-            </div>
-            <button class="btn btn-secondary" onclick="resetProgress()">Reset Progress</button>
-        </div>
-    </section>
-
-    <section class="resources-preview" id="resources">
-        <div class="container">
-            <h2>🎁 Download Resources & Earn Rewards</h2>
-            <p class="subtitle">Each download unlocks badges and points for your gaming profile!</p>
-            
-            <div class="resource-categories">
-                <div class="category-card">
-                    <div class="category-icon">🏥</div>
-                    <h3>Medical Professionals</h3>
-                    <p>Explore healthcare careers, nursing, and medical sciences</p>
-                    <div class="download-reward">
-                        <div class="reward-badge">🎯</div>
-                        <p><strong>Reward: Medical Explorer Badge</strong><br>+10 Points</p>
-                    </div>
-                    <div class="download-links">
-                        <a href="#" class="download-link" onclick="return unlockAchievement('medical')">
-                            📥 Download Medical Workbook
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">🔧</div>
-                    <h3>Engineering & Technical</h3>
-                    <p>Problem-solving, design thinking, and building skills</p>
-                    <div class="download-reward">
-                        <div class="reward-badge">🔧</div>
-                        <p><strong>Reward: Engineering Badge</strong><br>+10 Points</p>
-                    </div>
-                    <div class="download-links">
-                        <a href="#" class="download-link" onclick="return unlockAchievement('engineering')">
-                            📥 Download Engineering Workbook
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">💻</div>
-                    <h3>Technology & Innovation</h3>
-                    <p>Programming, IT, and digital innovation careers</p>
-                    <div class="download-reward">
-                        <div class="reward-badge">💻</div>
-                        <p><strong>Reward: Tech Innovator Badge</strong><br>+10 Points</p>
-                    </div>
-                    <div class="download-links">
-                        <a href="#" class="download-link" onclick="return unlockAchievement('technology')">
-                            📥 Download Technology Workbook
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">🎨</div>
-                    <h3>Art and Media</h3>
-                    <p>Creative expression, storytelling, and visual communication skills</p>
-                    <div class="download-reward">
-                        <div class="reward-badge">🎨</div>
-                        <p><strong>Reward: Art & Media Badge</strong><br>+10 Points</p>
-                    </div>
-                    <div class="download-links">
-                        <a href="#" class="download-link" onclick="return unlockAchievement('arts')">
-                            📥 Download Art & Media Workbook
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">🛡️</div>
-                    <h3>Protective Services</h3>
-                    <p>Modern security, technology, and community protection concepts</p>
-                    <div class="download-reward">
-                        <div class="reward-badge">🛡️</div>
-                        <p><strong>Reward: Protective Services Badge</strong><br>+10 Points</p>
-                    </div>
-                    <div class="download-links">
-                        <a href="#" class="download-link" onclick="return unlockAchievement('protective')">
-                            📥 Download Protective Services Workbook
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">🌱</div>
-                    <h3>Agriculture and Food Technology</h3>
-                    <p>Modern farming, food technology, and agricultural innovation</p>
-                    <div class="download-reward">
-                        <div class="reward-badge">🌱</div>
-                        <p><strong>Reward: Agriculture Badge</strong><br>+10 Points</p>
-                    </div>
-                    <div class="download-links">
-                        <a href="#" class="download-link" onclick="return unlockAchievement('agriculture')">
-                            📥 Download Agriculture Workbook
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">👗</div>
-                    <h3>Fashion and Creative Arts</h3>
-                    <p>Fashion design, creative industries, and artistic careers</p>
-                    <div class="download-reward">
-                        <div class="reward-badge">👗</div>
-                        <p><strong>Reward: Fashion Badge</strong><br>+10 Points</p>
-                    </div>
-                    <div class="download-links">
-                        <a href="#" class="download-link" onclick="return unlockAchievement('fashion')">
-                            📥 Download Fashion Workbook
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">🏢</div>
-                    <h3>Business and Marketing</h3>
-                    <p>Entrepreneurship, economics, and financial literacy through practical activities</p>
-                    <div class="download-reward">
-                        <div class="reward-badge">🏢</div>
-                        <p><strong>Reward: Business Badge</strong><br>+10 Points</p>
-                    </div>
-                    <div class="download-links">
-                        <a href="#" class="download-link" onclick="return unlockAchievement('business')">
-                            📥 Download Business Workbook
-                        </a>
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">🚀</div>
-                    <h3>Entrepreneurship and Startup</h3>
-                    <p>Startup basics, business planning, and entrepreneurial skills</p>
-                    <div class="download-reward">
-                        <div class="reward-badge">🚀</div>
-                        <p><strong>Reward: Entrepreneurship Badge</strong><br>+10 Points</p>
-                    </div>
-                    <div class="download-links">
-                        <a href="#" class="download-link" onclick="return unlockAchievement('entrepreneurship')">
-                            📥 Download Entrepreneurship Workbook
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="impact" id="about">
-        <div class="container">
-            <h2>Our Mission & Vision</h2>
+            <h2>The Problem</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number">53%</div>
-                    <div class="stat-label">Students want government jobs</div>
+                    <div class="stat-label">of students want government jobs</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">7%</div>
-                    <div class="stat-label">Consider STEM careers</div>
+                    <div class="stat-label">consider STEM careers</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">0%</div>
-                    <div class="stat-label">Finish school with clear direction</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Can develop initiative</div>
+                    <div class="stat-label">finish school with clear direction</div>
                 </div>
             </div>
             <div class="mission-statement">
-                <h3>Empowering Ghana's Future Leaders</h3>
-                <p>At RETEC Digital Library, our mission is to transform education in Ghana by equipping every student with the tools, inspiration, and confidence to pursue meaningful careers. We address a critical gap where 53% of students seek traditional jobs, only 7% explore STEM, and none leave school with a clear direction. Through innovative, career-aligned resources, gamified learning, and free access, we aim to foster a generation of problem-solvers and opportunity creators. Our vision is a Ghana where every young person can say with conviction: <strong>"I want to live a life where I solve [a problem] because [it matters to me]."</strong></p>
-                <div class="mission-quote">"Education is not just preparation for life; it is life itself. - John Dewey"</div>
-                <p>RETEC is committed to bridging the gap between education and real-world impact, ensuring every student graduates with purpose and potential.</p>
+                <p>Result: Graduates who wait for opportunities instead of creating them</p>
             </div>
         </div>
     </section>
 
+    <!-- Our Innovation -->
+    <section class="features" id="innovation">
+        <div class="container">
+            <h2>Our Innovation</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Career-Integrated Curriculum</h3>
+                    <p>Ghana's first curriculum using design thinking to connect classroom learning to career paths.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Problem Identification</h3>
+                    <p>Focus on solving real-world problems, not just memorization.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Ownership Mindset</h3>
+                    <p>Develops initiative and agency in every student.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>GES Aligned</h3>
+                    <p>Curriculum-aligned with focus on building agency.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Problems as Opportunities</h3>
+                    <p>Students learn to see challenges as chances to innovate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="features" id="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">1️⃣</div>
+                    <h3>Choose Career Cluster</h3>
+                    <p>Select a career field that interests your child</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">2️⃣</div>
+                    <h3>Download Workbook</h3>
+                    <p>Get problem-focused workbook with activities</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">3️⃣</div>
+                    <h3>Complete Challenges</h3>
+                    <p>Work on real-world challenge activities together</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">4️⃣</div>
+                    <h3>Build Initiative</h3>
+                    <p>Watch your child develop direction and confidence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Mission -->
+    <section class="impact" id="mission">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <div class="mission-statement">
+                <h3>Every Student Should Know What They Want</h3>
+                <p>Every student should complete: <strong>"I want to live a life where I solve _____ because _____"</strong></p>
+                <p>We don't just teach careers. We develop students who take initiative, identify problems worth solving, and believe they can shape their own futures.</p>
+                <div class="mission-quote">"Education is not preparation for life; education is life itself." - John Dewey</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About RETEC -->
+    <section class="impact" id="about">
+        <div class="container">
+            <h2>About RETEC</h2>
+            <div class="mission-statement">
+                <p>Founded to address the crisis of directionless graduates in Ghana. Built by educators who experienced the system's limitations and created what was missing - a curriculum that develops initiative and clear life direction in students.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Resources -->
+    <section class="resources-preview" id="resources">
+        <div class="container">
+            <h2>Available Career Resources</h2>
+            <p class="subtitle">Download comprehensive workbooks for each career cluster</p>
+            
+            <div class="resource-categories">
+                <!-- Medical Professionals -->
+                <div class="category-card">
+                    <div class="category-icon">🏥</div>
+                    <h3>Medical Professionals</h3>
+                    <p>Explore healthcare careers through problem-solving in medical contexts</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Health challenges identification</li>
+                            <li>Medical innovation thinking</li>
+                            <li>Community health projects</li>
+                            <li>Problem-solving exercises</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Medical Workbook</a>
+                </div>
+
+                <!-- Engineering & Technical -->
+                <div class="category-card">
+                    <div class="category-icon">🔧</div>
+                    <h3>Engineering & Technical Work</h3>
+                    <p>Design thinking and building solutions for infrastructure challenges</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Problem identification exercises</li>
+                            <li>Design thinking process</li>
+                            <li>Prototype development</li>
+                            <li>Testing and iteration</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Engineering Workbook</a>
+                </div>
+
+                <!-- Business & Finance -->
+                <div class="category-card">
+                    <div class="category-icon">🏢</div>
+                    <h3>Business & Finance</h3>
+                    <p>Entrepreneurship and business solution development</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Market gap identification</li>
+                            <li>Business problem-solving</li>
+                            <li>Value creation thinking</li>
+                            <li>Economic initiative building</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Business Workbook</a>
+                </div>
+
+                <!-- Arts & Media -->
+                <div class="category-card">
+                    <div class="category-icon">🎨</div>
+                    <h3>Arts & Media</h3>
+                    <p>Creative expression and communication solution development</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Storytelling for impact</li>
+                            <li>Communication challenges</li>
+                            <li>Creative problem-solving</li>
+                            <li>Media innovation projects</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Arts Workbook</a>
+                </div>
+
+                <!-- Law & Governance -->
+                <div class="category-card">
+                    <div class="category-icon">⚖️</div>
+                    <h3>Law & Governance</h3>
+                    <p>Legal thinking and civic responsibility development</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Community justice issues</li>
+                            <li>Rights and responsibilities</li>
+                            <li>Policy problem-solving</li>
+                            <li>Governance innovation</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Law Workbook</a>
+                </div>
+
+                <!-- Protective Services -->
+                <div class="category-card">
+                    <div class="category-icon">🛡️</div>
+                    <h3>Protective Services</h3>
+                    <p>Modern security and community protection innovation</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Community safety challenges</li>
+                            <li>Security technology thinking</li>
+                            <li>Emergency response planning</li>
+                            <li>Protection innovation</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Protective Services Workbook</a>
+                </div>
+
+                <!-- Technology & Innovation -->
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <h3>Technology & Innovation</h3>
+                    <p>Digital innovation and technology careers exploration</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Tech problem identification</li>
+                            <li>Digital solution design</li>
+                            <li>Innovation thinking</li>
+                            <li>Technology applications</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Technology Workbook</a>
+                </div>
+
+                <!-- Fashion & Creative Arts -->
+                <div class="category-card">
+                    <div class="category-icon">👗</div>
+                    <h3>Fashion & Creative Arts</h3>
+                    <p>Fashion design and creative industries exploration</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Design thinking exercises</li>
+                            <li>Creative problem-solving</li>
+                            <li>Fashion innovation</li>
+                            <li>Industry understanding</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Fashion Workbook</a>
+                </div>
+
+                <!-- Agriculture -->
+                <div class="category-card">
+                    <div class="category-icon">🌱</div>
+                    <h3>Agriculture & Food Technology</h3>
+                    <p>Modern farming and agricultural innovation</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Agricultural challenges</li>
+                            <li>Food technology solutions</li>
+                            <li>Sustainable farming</li>
+                            <li>Innovation projects</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Agriculture Workbook</a>
+                </div>
+
+                <!-- Education -->
+                <div class="category-card">
+                    <div class="category-icon">👨‍🏫</div>
+                    <h3>Education & Teaching</h3>
+                    <p>Teaching methods and educational leadership</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Educational challenges</li>
+                            <li>Teaching innovation</li>
+                            <li>Learning solutions</li>
+                            <li>Mentorship development</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Education Workbook</a>
+                </div>
+
+                <!-- Entrepreneurship -->
+                <div class="category-card">
+                    <div class="category-icon">🚀</div>
+                    <h3>Entrepreneurship & Startups</h3>
+                    <p>Startup development and entrepreneurial thinking</p>
+                    <div class="resource-details">
+                        <h4>Includes:</h4>
+                        <ul>
+                            <li>Business opportunity identification</li>
+                            <li>Startup planning</li>
+                            <li>Problem-solution fit</li>
+                            <li>Entrepreneurial mindset</li>
+                        </ul>
+                    </div>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="download-link" target="_blank">Download Entrepreneurship Workbook</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
     <section class="download-section" id="downloads">
         <div class="container">
             <h2>Start Using RETEC Resources Today</h2>
@@ -689,7 +471,7 @@
                         <li>Career exploration activities</li>
                         <li>Progress tracking sheets</li>
                     </ul>
-                    <a href="#" class="btn btn-download" onclick="return unlockAchievement('parent')">Download Parent Pack</a>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="btn btn-download" target="_blank">Download Parent Pack</a>
                 </div>
                 <div class="download-card">
                     <h3>👨‍🎓 For Students</h3>
@@ -699,7 +481,7 @@
                         <li>Career discovery journals</li>
                         <li>Project-based learning</li>
                     </ul>
-                    <a href="#" class="btn btn-download" onclick="return unlockAchievement('student')">Download Student Pack</a>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="btn btn-download" target="_blank">Download Student Pack</a>
                 </div>
                 <div class="download-card">
                     <h3>🏫 For Schools</h3>
@@ -709,25 +491,26 @@
                         <li>Assessment frameworks</li>
                         <li>Curriculum integration support</li>
                     </ul>
-                    <a href="#" class="btn btn-download" onclick="return unlockAchievement('school')">Download School Pack</a>
+                    <a href="GOOGLE_DRIVE_LINK_HERE" class="btn btn-download" target="_blank">Download School Pack</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>RETEC Digital Library</h4>
-                    <p>Empowering Ghanaian students with career-integrated education.</p>
+                    <p>Empowering Ghanaian JHS students with career-integrated education resources.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Career Resources</h4>
                     <ul>
                         <li><a href="#resources">Medical</a></li>
                         <li><a href="#resources">Engineering</a></li>
-                        <li><a href="#resources">Technology</a></li>
+                        <li><a href="#resources">Business</a></li>
                         <li><a href="#resources">All Careers</a></li>
                     </ul>
                 </div>
@@ -735,7 +518,7 @@
                     <h4>Support</h4>
                     <ul>
                         <li><a href="#">How to Use</a></li>
-                        <li><a href="#">Parent Guides</a></li>
+                        <li><a href="#">FAQs</a></li>
                         <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
@@ -743,15 +526,15 @@
                     <h4>Contact Us</h4>
                     <ul>
                         <li><a href="mailto:readingtimescareer@gmail.com">Email: readingtimescareer@gmail.com</a></li>
-                        <li><a href="https://wa.me/233247463901" target="_blank">WhatsApp: +233 (0) 247463901</a></li>
+                        <li><a href="https://wa.me/233247463901" target="_blank">WhatsApp: +233 24 746 3901</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>About</h4>
                     <ul>
-                        <li><a href="#about">Our Mission</a></li>
-                        <li><a href="#">Impact Stories</a></li>
-                        <li><a href="#">Join Us</a></li>
+                        <li><a href="#mission">Our Mission</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Join Our Team</a></li>
                     </ul>
                 </div>
             </div>
@@ -761,123 +544,5 @@
         </div>
     </footer>
 
-    <div class="celebration" id="celebration" style="display: none;">
-        <p>Congratulations! You unlocked a new badge! 🎉</p>
-    </div>
-
-    <script>
-        // Store progress in localStorage
-        let points = parseInt(localStorage.getItem('retecPoints')) || 0;
-        let badges = JSON.parse(localStorage.getItem('retecBadges')) || {};
-        let level = parseInt(localStorage.getItem('retecLevel')) || 1;
-        let downloads = parseInt(localStorage.getItem('retecDownloads')) || 0;
-
-        // Update UI
-        function updateStats() {
-            document.getElementById('points-counter').textContent = points;
-            document.getElementById('badges-counter').textContent = Object.keys(badges).length;
-            document.getElementById('level-counter').textContent = level;
-            document.getElementById('downloads-counter').textContent = downloads;
-            localStorage.setItem('retecPoints', points);
-            localStorage.setItem('retecBadges', JSON.stringify(badges));
-            localStorage.setItem('retecLevel', level);
-            localStorage.setItem('retecDownloads', downloads);
-            updateBadges();
-        }
-
-        // Update badges display
-        function updateBadges() {
-            const tracker = document.getElementById('progress-tracker');
-            tracker.querySelectorAll('.career-badge').forEach(badge => {
-                const career = badge.getAttribute('data-career');
-                if (badges[career]) {
-                    badge.classList.remove('locked');
-                    badge.classList.add('unlocked');
-                }
-            });
-        }
-
-        // Unlock achievement
-        function unlockAchievement(career) {
-            if (!badges[career]) {
-                badges[career] = true;
-                points += 10;
-                downloads += 1;
-                if (points >= level * 50) level++;
-                updateStats();
-                showCelebration(`Unlocked ${career.charAt(0).toUpperCase() + career.slice(1)} Badge!`);
-            }
-            return false; // Prevent default link behavior
-        }
-
-        // Show celebration popup
-        function showCelebration(message) {
-            const celebration = document.getElementById('celebration');
-            celebration.textContent = message;
-            celebration.style.display = 'block';
-            setTimeout(() => celebration.style.display = 'none', 3000);
-        }
-
-        // Quiz logic
-        const quizQuestions = [
-            {
-                question: "What type of activities do you enjoy the most?",
-                options: { creative: "Creating art or stories", analytical: "Solving puzzles and problems", helping: "Helping and teaching others", organizing: "Planning and organizing things" },
-                career: { creative: "arts", analytical: "technology", helping: "medical", organizing: "business" }
-            }
-        ];
-
-        let currentQuestionIndex = 0;
-        const quizQuestion = document.getElementById('current-question');
-        const quizOptions = document.getElementById('quiz-options');
-        const quizResult = document.getElementById('quiz-result');
-        const careerMatch = document.getElementById('career-match');
-
-        function loadQuestion() {
-            const q = quizQuestions[currentQuestionIndex];
-            quizQuestion.textContent = q.question;
-            quizOptions.innerHTML = '';
-            for (let key in q.options) {
-                const button = document.createElement('button');
-                button.className = 'quiz-option';
-                button.textContent = q.options[key];
-                button.setAttribute('data-answer', key);
-                button.onclick = () => checkAnswer(key, q.career[key]);
-                quizOptions.appendChild(button);
-            }
-            quizResult.style.display = 'none';
-        }
-
-        function checkAnswer(answer, career) {
-            quizOptions.style.display = 'none';
-            quizResult.style.display = 'block';
-            careerMatch.textContent = `Based on your answers, you might enjoy careers in ${career.charAt(0).toUpperCase() + career.slice(1)}!`;
-            points += 5;
-            updateStats();
-        }
-
-        function restartQuiz() {
-            currentQuestionIndex = 0;
-            quizOptions.style.display = 'grid';
-            quizResult.style.display = 'none';
-            loadQuestion();
-        }
-
-        // Reset progress
-        function resetProgress() {
-            if (confirm('Are you sure you want to reset all progress?')) {
-                points = 0;
-                badges = {};
-                level = 1;
-                downloads = 0;
-                updateStats();
-                showCelebration('Progress reset! Start fresh!');
-            }
-        }
-
-        // Initialize
-        updateStats();
-        loadQuestion();
-    </script>
 </body>
 </html>
